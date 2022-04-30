@@ -3,10 +3,10 @@ package co.edu.uco.crosscutting.util.text;
 import static co.edu.uco.crosscutting.util.object.UtilObject.getUtilObject;
 
 public class UtilText {
-
+	
 	public static final String EMPTY = "";
 	
-	private UtilText() {	
+	private UtilText() {
 	}
 	
 	public static boolean isNull(String value) {
@@ -25,4 +25,5 @@ public class UtilText {
 		return getDefault(value).trim();
 	}
 	
+
 }
