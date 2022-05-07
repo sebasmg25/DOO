@@ -8,7 +8,7 @@ public class DAOfactory {
 		return null;
 	}
 	
-	public abstract void OpenConnection();
+	protected abstract void OpenConnection();
 	
 	public abstract void getConnection();
 	
