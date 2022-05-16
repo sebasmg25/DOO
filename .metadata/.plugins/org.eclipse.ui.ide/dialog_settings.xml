@@ -6,6 +6,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\ASUS\Documents\Sebastian\U\2022-1\DOO\DOO Parcial\DOO\CrossCutingGrades"/>
+			<item value="C:\Users\ASUS\Documents\Sebastian\U\2022-1\DOO\DOO Parcial\DOO\ApiGrades"/>
 			<item value="C:\Users\ASUS\Documents\Sebastian\U\2022-1\DOO\DOO Parcial\DOO\ApiGrade"/>
 			<item value="C:\Users\ASUS\Documents\Sebastian\U\2022-1\DOO\DOO Parcial\DOO\BusinessLogicGrades"/>
 			<item value="C:\Users\ASUS\Documents\Sebastian\U\2022-1\DOO\DOO Parcial\DOO\CrossCutting"/>

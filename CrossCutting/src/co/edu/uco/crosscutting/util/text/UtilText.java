@@ -13,17 +13,14 @@ public class UtilText {
 		return getUtilObject().isNull(value);
 	}
 	
-	private static String getDefault(String value, String defaultValue) {
+	public static String getDefault(String value, String defaultValue) {
 		return getUtilObject().getDefault(value, defaultValue);
 	}
-	
-	private static String getDefault(String value) {
-		return getDefault(value, EMPTY);
+	public static String getDefault(String value) {
+		return getUtilObject().getDefault(value, EMPTY);
 	}
 	
 	public static String trim(String value) {
 		return getDefault(value).trim();
 	}
-	
-
 }

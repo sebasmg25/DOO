@@ -1,28 +1,10 @@
 
-k
-java:S1144%"3Remove this unused private "getUserMessage" method.(ëãõ•øÿÿÿÿ8êÄ²æ‰0HŠRMAJORZ
-CODE_SMELL
-m
-java:S11444"5Remove this unused private "setRootException" method.(—çĞøúÿÿÿÿ8êÄ²æ‰0HŒRMAJORZ
-CODE_SMELL
-p
-java:S1144+"8Remove this unused private "getTechnicalMessage" method.(‚ÎŠåùÿÿÿÿ8êÄ²æ‰0HRMAJORZ
-CODE_SMELL
-k
-java:S1144("3Remove this unused private "setUserMessage" method.(òİÂúÿÿÿÿ8êÄ²æ‰0HRMAJORZ
-CODE_SMELL
-h
-java:S11441"5Remove this unused private "getRootException" method.(àÊ¼Í8êÄ²æ‰0H’RMAJORZ
-CODE_SMELL
-k
-java:S1144."8Remove this unused private "setTechnicalMessage" method.(ëÁıæ8êÄ²æ‰0H”RMAJORZ
-CODE_SMELL
-W
-java:S1165"$Make this "userMessage" field final.(ıŸÀ‰8îúç‰0H–RMINORZ
-CODE_SMELL
 a
-java:S1165")Make this "technicalMessage" field final.(¤íÔ³ÿÿÿÿÿ8îúç‰0H—RMINORZ
+java:S1165")Make this "technicalMessage" field final.(¤íÔ³ÿÿÿÿÿ8îúç‰0HîRMINORZ
 CODE_SMELL
 Y
-java:S1165"&Make this "rootException" field final.(ÂÕÊò8îúç‰0H˜RMINORZ
+java:S1165"&Make this "rootException" field final.(ÂÕÊò8îúç‰0HïRMINORZ
+CODE_SMELL
+W
+java:S1165"$Make this "userMessage" field final.(ıŸÀ‰8îúç‰0HğRMINORZ
 CODE_SMELL
