@@ -4,7 +4,7 @@ import co.edu.uco.grades.dto.StudentDTO;
 
 public interface StudentDAO {
 	
-	void create(StudentDTO student);
+	void create(StudentDTO student) throws Exception;
 	void update(StudentDTO student);
 	void delete(int id);
 	void find(StudentDTO student);
