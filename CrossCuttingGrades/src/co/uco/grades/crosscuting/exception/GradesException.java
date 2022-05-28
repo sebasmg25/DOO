@@ -65,13 +65,11 @@ public class GradesException extends GeneralException {
 		return location;
 	}
 
-	public static Exception buildTechnicalDataException(String string, SQLException exception, ExceptionLocation data) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Exception buildTechnicalBusinessLogicException(String technicalMessage) {
+		return new GradesException(null, technicalMessage, null, ExceptionType.TECHNICAL, ExceptionLocation.BUSINESS_LOGIC);
 	}
-
-	public static Exception buildTechnicalDataException(String string, Exception exception, ExceptionLocation data) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public static Exception buildBusinessLogicException(String userMessage) {
+		return new GradesException(null, userMessage, null, ExceptionType.TECHNICAL, ExceptionLocation.BUSINESS_LOGIC);
 	}
 }

@@ -20,40 +20,86 @@ import co.edu.uco.grades.api.controller.validators.Validator;
 import co.edu.uco.grades.api.controller.validators.idtype.CreateIdTypeValidator;
 import co.edu.uco.grades.businesslogic.facade.IdTypeFacade;
 import co.edu.uco.grades.businesslogic.facade.impl.IdTypeFacadeImpl;
-import co.edu.uco.grades.crosscutting.exception.GeneralException;
-import co.uco.grades.crosscutting.exception.enumeration.ExceptionType;
+import co.uco.grades.crosscuting.exception.GradesException;
+import co.uco.grades.crosscuting.exception.enumeration.ExceptionType;
 import co.edu.uco.grades.dto.IdTypeDTO;
 
 @RestController
-@RequestMapping("api/v1/idtype")
+@RequestMapping("/api/v1/idtype")
 public class IdTypeController {
-	
-	@GetMapping("/dummy")
-	public IdTypeDTO getDummy() {
-		return new IdTypeDTO();
-	}
-	
-	@PostMapping
+
+	@PostMapping()
 	public ResponseEntity<Response<IdTypeDTO>> create(@RequestBody IdTypeDTO dto) {
-		
 		Validator<IdTypeDTO> validator = new CreateIdTypeValidator();
 		List<String> messages = UtilObject.getUtilObject().getDefault(validator.validate(dto), new ArrayList<>());
 		Response<IdTypeDTO> response = new Response<>();
 		ResponseEntity<Response<IdTypeDTO>> responseEntity;
 		HttpStatus statusCode = HttpStatus.BAD_REQUEST;
-		
+
 		if (messages.isEmpty()) {
 			try {
+				IdTypeFacade facade = new IdTypeFacadeImpl();
+				facade.create(dto);
+				messages.add("IdType was created successfully");
+				statusCode = HttpStatus.OK;
+			} catch (GradesException exception) {
+				if (ExceptionType.TECHNICAL.equals(exception.getType())) {
+					messages.add("There was a problem trying to register the new id type: Please, try again");
+					System.err.println(exception.getLocation());
+					System.err.println(exception.getType());
+					System.err.println(exception.getTechnicalMessage());
+					exception.getRootException().printStackTrace();
+				} else {
+					messages.add(exception.getUserMessage());
+					System.err.println(exception.getLocation());
+					System.err.println(exception.getType());
+					System.err.println(exception.getUserMessage());
+					exception.getRootException().printStackTrace();
+				}
+			} catch (Exception exception) {
+				messages.add("There was an unexpected problem trying to create the new id type");
+				exception.printStackTrace();
+			}
+		}
+		response.setMessages(messages);
+		responseEntity = new ResponseEntity<Response<IdTypeDTO>>(response, statusCode);
+
+		return responseEntity;
+	}
+
+	@PutMapping("/{id}")
+	public void update(@PathVariable("id") int id, @RequestBody IdTypeDTO dto) {
+		System.out.println("actualizando...");
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable("id") int id) {
+		System.out.println("Eliminando...");
+	}
+
+	@GetMapping("/{id}")
+	public void findById(@PathVariable("id") int id) {
+		System.out.println("Buscando...");
+	}
+
+	@GetMapping()
+	public ResponseEntity<Response<IdTypeDTO>> find() {
+		List<String> messages = new ArrayList<>();
+		Response<IdTypeDTO> response = new Response<>();
+		ResponseEntity<Response<IdTypeDTO>> responseEntity;
+		HttpStatus statusCode = HttpStatus.BAD_REQUEST;
+
+		try {
 			IdTypeFacade facade = new IdTypeFacadeImpl();
-			facade.create(dto);
-			messages.add("Id type was created succesfully!");
+			response.setData(facade.find(new IdTypeDTO()));
+			messages.add("IdTypes were found successfully");
 			statusCode = HttpStatus.OK;
 		} catch (GradesException exception) {
-			if(ExceptionType.TECHNICAL.equals(exception.getType())) {
-				messages.add("There was a problem trying to register the new id Type information. Please, try again...");
+			if (ExceptionType.TECHNICAL.equals(exception.getType())) {
+				messages.add("There was a problem trying to find the id types Please, try again");
 				System.err.println(exception.getLocation());
 				System.err.println(exception.getType());
-				System.err.println(exception.getTechnicalMessage());
+				System.err.println(exception.getMessage());
 				exception.getRootException().printStackTrace();
 			} else {
 				messages.add(exception.getMessage());
@@ -61,35 +107,15 @@ public class IdTypeController {
 				System.err.println(exception.getType());
 				System.err.println(exception.getUserMessage());
 				exception.getRootException().printStackTrace();
-			} 
+			}
 		} catch (Exception exception) {
-			messages.add("There was an unexpected problem trying to register the new id Type information. Please, try again...");
+			messages.add("There was an unexpected problem trying to find the id types");
 			exception.printStackTrace();
 		}
-	  }
 		response.setMessages(messages);
-		responseEntity = new ResponseEntity<Response<IdTypeDTO>>(response, HttpStatus.OK);
-		
+		responseEntity = new ResponseEntity<Response<IdTypeDTO>>(response, statusCode);
+
 		return responseEntity;
 	}
-	
-	@PutMapping("/{id}")
-	public void create(@PathVariable("id") int id, @RequestBody IdTypeDTO dto) {
-		System.out.println("Estoy en actualizar!!");	
-	}
-	
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") int id) {
-		System.out.println("Estoy en eliminar!!");	
-	}
-	
-	@GetMapping("/{id}")
-	public void findByid(@PathVariable("id") int id) {
-		System.out.println("Estoy en consultar por id!!");	
-	}
-	
-	@GetMapping
-	public void find() {
-		System.out.println("Estoy en consultar todos!!");	
-	}
+
 }

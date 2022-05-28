@@ -37,7 +37,7 @@ public class SubjectAzureSqlDAO extends ConnectionSQL implements SubjectDAO {
 		String sql = "INSERT INTO Subject(id, name) VALUES(?,?)";
 		
 		try(PreparedStatement preparedStatement = getConnection().prepareStatement(sql)){
-			preparedStatement.setString(1, subject.getId());
+			preparedStatement.setInt(1, subject.getId());
 		}catch (SQLException exception){
 			
 			throw GradesException.buildTechnicalException("There was a problem trying to create a new subject registry on sql server", exception, null);
@@ -55,7 +55,7 @@ public class SubjectAzureSqlDAO extends ConnectionSQL implements SubjectDAO {
 String sql = "UPDATE FROM Subject WHERE id = ?";
 		
 		try(PreparedStatement preparedStatement = getConnection().prepareStatement(sql)){
-			preparedStatement.setString(1, subject.getId());
+			preparedStatement.setInt(1, subject.getId());
 		}catch (SQLException exception){
 			
 			throw GradesException.buildTechnicalException("There was a problem trying to update a subject registry on sql server", exception, null);
@@ -73,7 +73,7 @@ String sql = "UPDATE FROM Subject WHERE id = ?";
 		String sql = "DELETE FROM Subject WHERE id = ?";
 		
 		try(PreparedStatement preparedStatement = getConnection().prepareStatement(sql)){
-			preparedStatement.setString(1, subject.getId());
+			((SubjectDTO) preparedStatement).getId();
 		}catch (SQLException exception){
 			
 			throw GradesException.buildTechnicalException("There was a problem trying to delete a subject registry on sql server", exception, null);
@@ -87,7 +87,7 @@ String sql = "UPDATE FROM Subject WHERE id = ?";
 	}
 
 	@Override
-	public List<SubjectDTO> find(SubjectDTO subject) {
+	public List<SubjectDTO> find(SubjectDTO subject) throws SQLException {
 		
 		boolean setWhere = true;
 		List<Object> parameters = new ArrayList<>();
@@ -99,7 +99,7 @@ String sql = "UPDATE FROM Subject WHERE id = ?";
 		
 		if(!UtilObject.getUtilObject().isNull(subject)) {
 			
-			if(UtilNumeric.getUtilNumeric().isGreatherThan(subject.getId(), subject.getName())){
+			if(UtilNumeric.getUtilNumeric().isGreaterThan(null, null)) {
 				sb.append("WHERE id= ? ");
 				setWhere = false;
 				
@@ -172,6 +172,7 @@ private List<SubjectDTO> executeQuery(PreparedStatement preparedStatement){
 		
 		throw GradesException.buildTechnicalException("There was an unexpected problem trying to delete a subject registry on sql server", exception, null);
 		
+		} 
 	}
 }
 private SubjectDTO assembleDTO(ResultSet resultSet) throws Exception {
