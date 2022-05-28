@@ -27,3 +27,7 @@ o
 ?src/co/edu/uco/grades/data/dao/azuresql/StudentAzureSqlDAO.java,8\3\83fd0ba62b0993c4a97d248424662201a4b0c1ed
 b
 2src/co/edu/uco/grades/data/factory/DAOFactory.java,b\2\b2dd4a0f8eb2b1352fa88559140c7ced9698fd7f
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+o
+?src/co/edu/uco/grades/data/dao/azuresql/SubjectAzureSqlDAO.java,3\c\3cfbedf3fe9492ad98d77f55420bae5c87ff254d

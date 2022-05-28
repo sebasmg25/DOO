@@ -27,6 +27,11 @@ import co.edu.uco.grades.dto.IdTypeDTO;
 @RestController
 @RequestMapping("/api/v1/idtype")
 public class IdTypeController {
+	
+	@GetMapping("/dummy")
+	public IdTypeDTO getDummy() {
+		return new IdTypeDTO();
+	}
 
 	@PostMapping()
 	public ResponseEntity<Response<IdTypeDTO>> create(@RequestBody IdTypeDTO dto) {

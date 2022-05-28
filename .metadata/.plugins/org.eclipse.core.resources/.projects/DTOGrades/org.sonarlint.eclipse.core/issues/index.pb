@@ -9,3 +9,5 @@ X
 (src/co/edu/uco/grades/dto/IdTypeDTO.java,c\0\c07950f46320da91235036362ee210ce53c17c1e
 Y
 )src/co/edu/uco/grades/dto/SubjectDTO.java,3\6\36b8600ff3429cdce51cba5351f904b33b3ca25a
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

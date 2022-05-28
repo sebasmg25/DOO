@@ -10,6 +10,7 @@ import java.util.List;
 import co.uco.grades.crosscuting.exception.GradesException;
 import co.edu.uco.grades.data.dao.SubjectDAO;
 import co.edu.uco.grades.data.dao.connection.ConnectionSQL;
+import co.edu.uco.grades.dto.IdTypeDTO;
 import co.edu.uco.grades.dto.SubjectDTO;
 import co.edu.uco.crosscutting.util.numeric.UtilNumeric;
 import co.edu.uco.crosscutting.util.object.UtilObject;
@@ -152,29 +153,25 @@ String sql = "UPDATE FROM Subject WHERE id = ?";
 
 }
 	
-private List<SubjectDTO> executeQuery(PreparedStatement preparedStatement){
-	List<SubjectDTO>;
+	private List<IdTypeDTO> executeQuery(PreparedStatement preparedStatement) {
+		  
+		  List<IdTypeDTO> results = new ArrayList<>();
+		  
+		  try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				
+			} catch (SQLException exception) {
+				
+				throw GradesException.buildTechnicalDataException("There was a problem trying to execute the query to recovery IdType on Azure SQL Server", exception);
+				
+			} catch (Exception exception) {
+				
+				throw GradesException.buildTechnicalDataException("An unexpected problem has ocurred trying to execute the query to recovery IdType on Azure SQL Server", exception);		
+			}
+		  
+		     return results;
+		  
+		  }
 
-	
-	
-	try(PreparedStatement preparedStatement1 = getConnection().prepareStatement(sb.toString())){
-		for (int index = 0; index < parameters.size(); index++) {
-			preparedStatement1.setObject(index + 1, parameters.get(index));
-		}
-		
-		try (ResultSet resultSet = preparedStatement1.executeQuery()){
-		
-	}catch (SQLException exception){
-		
-		throw GradesException.buildTechnicalException("There was a problem trying to delete a subject registry on sql server", exception, null);
-		
-	}catch (Exception exception) {
-		
-		throw GradesException.buildTechnicalException("There was an unexpected problem trying to delete a subject registry on sql server", exception, null);
-		
-		} 
-	}
-}
 private SubjectDTO assembleDTO(ResultSet resultSet) throws Exception {
 	
 	SubjectDTO dto = new SubjectDTO();
