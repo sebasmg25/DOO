@@ -11,17 +11,17 @@ public abstract class DAOFactory {
 		return AzureSqlDAOFactory.create();
 	}
 	
-	protected abstract void openConnection();
+	protected abstract void openConnection() throws Exception;
 	
 	protected abstract Connection getConnection();
 	
-	public abstract void initTransaction();
+	public abstract void initTransaction() throws Exception;
 	
 	public abstract void closeConnection();
 	
-	public abstract void rollbackTransaction();
+	public abstract void rollbackTransaction() throws Exception;
 	
-	public abstract void commitTransaction();
+	public abstract void commitTransaction() throws Exception;
 	
 	public abstract StudentDAO getStudentDAO();
 	

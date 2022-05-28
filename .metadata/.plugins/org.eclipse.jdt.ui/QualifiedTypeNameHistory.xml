@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grades.data.factory.DAOFactory"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grade.businesslogic.business.IdTypeBusiness"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grade.businesslogic.business.impl.IdTypeBusinessImpl"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="co.edu.uco.grades.dto.IdTypeDTO"/>
+    <fullyQualifiedTypeName name="co.edu.uco.crosscutting.util.text.UtilText"/>
     <fullyQualifiedTypeName name="co.edu.uco.crosscutting.util.object.UtilObject"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grades.api.controller.validators.Validator"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grades.api.controller.validators.idtype.CreateIdTypeValidator"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grades.businesslogic.facade.IdTypeFacade"/>
+    <fullyQualifiedTypeName name="co.edu.uco.grades.businesslogic.facade.impl.IdTypeFacadeImpl"/>
+    <fullyQualifiedTypeName name="co.uco.grades.crosscuting.exception.enumeration.ExceptionType"/>
+    <fullyQualifiedTypeName name="co.uco.grades.crosscuting.exception.GradesException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="org.apache.coyote.Response"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
 </qualifiedTypeNameHistroy>

@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import co.edu.uco.grades.crosscuting.exception.GradesException;
+import co.uco.grades.crosscuting.exception.GradesException;
 import co.edu.uco.grades.data.dao.StudentDAO;
 import co.edu.uco.grades.data.dao.connection.ConnectionSQL;
+import co.edu.uco.grades.data.factory.DAOFactory;
 import co.edu.uco.grades.dto.StudentDTO;
 
 public class StudentAzureSqlDAO extends ConnectionSQL implements StudentDAO {
@@ -20,20 +21,25 @@ public class StudentAzureSqlDAO extends ConnectionSQL implements StudentDAO {
 	}
 
 	@Override
-	public void create(StudentDTO student) {
+	public void create(StudentDTO student) throws Exception {
 		String sql = "INSERT INTO Stundent(idNumber, idType, name, email) VALUES(?,?,?,?)";
 		
-		try(PreparedStatement preparedStatement = getConnection().prepareStatement(sql)){
-			preparedStatement.setString(1, student.getIdNumber());
-			preparedStatement.setInt(2, student.getIdType().getId());
-		}catch (SQLException exception){
-			
-			throw GradesException.buildTechnicalDataException("There was a problem trying to create a new studend registry on sql server", exception);
-			
-		}catch (Exception exception) {
-			
-			throw GradesException.buildTechnicalDataException("There was an unexpected problem trying to create a new studend registry on sql server", exception);
-			
+		try {
+			try(PreparedStatement preparedStatement = getConnection().prepareStatement(sql)){
+				preparedStatement.setString(1, student.getIdNumber());
+				preparedStatement.setInt(2, student.getIdType().getId());
+			}catch (SQLException exception){
+				
+				throw GradesException.buildTechnicalDataException("There was a problem trying to create a new studend registry on sql server", exception);
+				
+			}catch (Exception exception) {
+				
+				throw GradesException.buildTechnicalDataException("There was an unexpected problem trying to create a new studend registry on sql server", exception);
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
@@ -54,6 +60,11 @@ public class StudentAzureSqlDAO extends ConnectionSQL implements StudentDAO {
 	public void find(StudentDTO student) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static DAOFactory create() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

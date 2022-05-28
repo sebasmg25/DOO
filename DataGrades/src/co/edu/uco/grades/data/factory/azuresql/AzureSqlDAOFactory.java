@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import co.edu.uco.crosscutting.util.sql.UtilConnection;
-import co.edu.uco.grades.crosscuting.exception.GradesException;
-import co.edu.uco.grades.crosscuting.exception.enumeration.ExceptionLocation;
+import co.uco.grades.crosscuting.exception.GradesException;
+import co.uco.grades.crosscuting.exception.enumeration.ExceptionLocation;
 import co.edu.uco.grades.data.dao.StudentDAO;
 import co.edu.uco.grades.data.dao.azuresql.StudentAzureSqlDAO;
 import co.edu.uco.grades.data.factory.DAOFactory;
@@ -16,7 +16,12 @@ public class AzureSqlDAOFactory extends DAOFactory {
 	private Connection connection;
 
 	private AzureSqlDAOFactory() {
-		openConnection();
+		try {
+			openConnection();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -27,11 +32,11 @@ public class AzureSqlDAOFactory extends DAOFactory {
 			connection = DriverManager.getConnection(stringConnection);
 
 		} catch (SQLException exception) {
-			throw GradesException.buildTechnicalDataException(
+			throw GradesException.buildTechnicalException(
 					"There was a problem trying to get the connection with SQL server at jdbc:sqlserver://academic-database-server.database.windows.net:1433;database=academic-db;user=academicDmlUser",
 					exception, ExceptionLocation.DATA);
 		} catch (Exception exception) {
-			throw GradesException.buildTechnicalDataException(
+			throw GradesException.buildTechnicalException(
 					"An unexpected problem has ocurred while trying to get the connection with SQL server", exception,
 					ExceptionLocation.DATA);
 
@@ -57,19 +62,18 @@ public class AzureSqlDAOFactory extends DAOFactory {
 
 		} catch (SQLException exception) {
 			throw GradesException.buildTechnicalDataException(
-					"There was a problem trying to close the connection with the SQL Server", exception,
-					ExceptionLocation.DATA);
+					"There was a problem trying to close the connection with the SQL Server", exception);
 		} catch (Exception exception) {
 			throw GradesException.buildTechnicalDataException(
 					"An unexpected problem has ocurred while trying to close the connection with the SQL Server",
-					exception, ExceptionLocation.DATA);
+					exception);
 
 		}
 
 	}
 
 	@Override
-	public void rollbackTransaction() {
+	public void rollbackTransaction()  {
 		if (UtilConnection.isClosed(connection)) {
 			throw GradesException.buildTechnicalException(
 					"It's not possible to rollback a connection because the conection is closed");
@@ -87,10 +91,10 @@ public class AzureSqlDAOFactory extends DAOFactory {
 			throw exception;
 
 		} catch (SQLException exception) {
-			throw GradesException.buildTechnicalDataException("There was a problem trying to rollback the transaction",
+			throw GradesException.buildTechnicalException("There was a problem trying to rollback the transaction",
 					exception, ExceptionLocation.DATA);
 		} catch (Exception exception) {
-			throw GradesException.buildTechnicalDataException(
+			throw GradesException.buildTechnicalException(
 					"An unexpected problem has ocurred while trying to rollback the transaction", exception,
 					ExceptionLocation.DATA);
 
@@ -99,7 +103,7 @@ public class AzureSqlDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public void initTransaction() {
+	public void initTransaction()  {
 		if (UtilConnection.isClosed(connection)) {
 			throw GradesException.buildTechnicalException(
 					"It's not possible to initialize a connection because the conection is already closed");
@@ -113,10 +117,10 @@ public class AzureSqlDAOFactory extends DAOFactory {
 			getConnection().setAutoCommit(false);
 
 		} catch (SQLException exception) {
-			throw GradesException.buildTechnicalDataException("There was a problem trying to initialize the transaction",
+			throw GradesException.buildTechnicalException("There was a problem trying to initialize the transaction",
 					exception, ExceptionLocation.DATA);
 		} catch (Exception exception) {
-			throw GradesException.buildTechnicalDataException(
+			throw GradesException.buildTechnicalException(
 					"An unexpected problem has ocurred while trying to initialize the transaction", exception,
 					ExceptionLocation.DATA);
 
@@ -125,7 +129,7 @@ public class AzureSqlDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public void commitTransaction() {
+	public void commitTransaction()  {
 		if (UtilConnection.isClosed(connection)) {
 			throw GradesException.buildTechnicalException(
 					"It's not possible to commit a connection because the conection is already closed");
@@ -144,10 +148,10 @@ public class AzureSqlDAOFactory extends DAOFactory {
 			throw exception;
 
 		} catch (SQLException exception) {
-			throw GradesException.buildTechnicalDataException("There was a problem trying to commit the transaction",
+			throw GradesException.buildTechnicalException("There was a problem trying to commit the transaction",
 					exception, ExceptionLocation.DATA);
 		} catch (Exception exception) {
-			throw GradesException.buildTechnicalDataException(
+			throw GradesException.buildTechnicalException(
 					"An unexpected problem has ocurred while trying to commit the transaction", exception,
 					ExceptionLocation.DATA);
 
